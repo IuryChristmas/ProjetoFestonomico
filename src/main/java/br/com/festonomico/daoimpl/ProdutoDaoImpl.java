@@ -1,19 +1,21 @@
-package br.com.festonomico.dao;
+package br.com.festonomico.daoimpl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.PreparedStatement;
 
+import br.com.festonomico.dao.ProdutoDao;
 import br.com.festonomico.jdbc.ConnectionFactory;
 import br.com.festonomico.modelo.Produto;
 
-public class ProdutoDAO {
+public class ProdutoDaoImpl implements ProdutoDao {
+
 	Connection con = null;
 	
-	public ProdutoDAO(){
+	public ProdutoDaoImpl(){
 		con = new ConnectionFactory().getConnection();
 	}
 	//insere produto
@@ -60,7 +62,7 @@ public class ProdutoDAO {
 		
 		return produtos;
 	}
-	//seleciona produto especifico para edição
+	//seleciona produto especifico para ediï¿½ï¿½o
 	public List<Produto> getProduto(int id){
 		List<Produto> produtos = new ArrayList<Produto>();
 		try{
@@ -87,7 +89,7 @@ public class ProdutoDAO {
 		}
 		return produtos;
 	}
-	//responsável pela edição
+	//responsï¿½vel pela ediï¿½ï¿½o
 	public void alteraProduto(Produto produto){
 		String sql = "update produtos set nome=?, quantidade=?, preco=? "
 				+ "where id=?";

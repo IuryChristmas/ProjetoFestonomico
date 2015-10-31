@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.festonomico.dao.ProdutoDAO;
+import br.com.festonomico.dao.ProdutoDao;
+import br.com.festonomico.daoimpl.ProdutoDaoImpl;
 import br.com.festonomico.modelo.Produto;
 
 @WebServlet("/adicionaProduto")
@@ -27,7 +28,7 @@ public class AdicionaProdutoServlet extends HttpServlet{
 		produto.setQuantidade(Integer.parseInt(quantidade));
 		produto.setPreco(Double.parseDouble(preco));
 		//instancia ProdutoDAO e salva no BD os dados
-		ProdutoDAO dao = new ProdutoDAO();
+		ProdutoDao dao = new ProdutoDaoImpl();
 		dao.insereProduto(produto);
 		RequestDispatcher rd = request.getRequestDispatcher("produto-adicionado.jsp");
 		//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/produto-adicionado.jsp");

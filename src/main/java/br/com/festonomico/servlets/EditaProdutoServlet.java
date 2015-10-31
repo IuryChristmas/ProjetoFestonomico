@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.festonomico.dao.ProdutoDAO;
+import br.com.festonomico.dao.ProdutoDao;
+import br.com.festonomico.daoimpl.ProdutoDaoImpl;
 import br.com.festonomico.modelo.Produto;
 
 @WebServlet("/editaProduto")
@@ -25,7 +26,7 @@ public class EditaProdutoServlet extends HttpServlet{
 		produto.setPreco(Double.parseDouble(request.getParameter("valor")));
 		produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
 		
-		ProdutoDAO dao = new ProdutoDAO();
+		ProdutoDao dao = new ProdutoDaoImpl();
 		dao.alteraProduto(produto);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("listaProduto");

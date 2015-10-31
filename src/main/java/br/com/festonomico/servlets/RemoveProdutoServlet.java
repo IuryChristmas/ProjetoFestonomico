@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.festonomico.dao.ProdutoDAO;
+import br.com.festonomico.dao.ProdutoDao;
 import br.com.festonomico.modelo.Produto;
 
 @WebServlet("removeProduto")
@@ -19,7 +19,7 @@ public class RemoveProdutoServlet extends HttpServlet{
 		
 		Produto produto = new Produto();
 		produto.setId(Integer.parseInt(request.getParameter("id")));
-		ProdutoDAO dao = new ProdutoDAO();
+		ProdutoDao dao = new ProdutoDaoImpl();
 		dao.removeProduto(produto);
 			
 		RequestDispatcher rd = request.getRequestDispatcher("selecionaProduto");

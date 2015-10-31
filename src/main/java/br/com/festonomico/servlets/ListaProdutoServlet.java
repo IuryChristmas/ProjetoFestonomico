@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.festonomico.dao.ProdutoDAO;
+import br.com.festonomico.dao.ProdutoDao;
+import br.com.festonomico.daoimpl.ProdutoDaoImpl;
 import br.com.festonomico.modelo.Produto;
 
 @WebServlet("/listaProduto")
@@ -18,7 +19,7 @@ public class ListaProdutoServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		ProdutoDAO dao = new ProdutoDAO();
+		ProdutoDao dao = new ProdutoDaoImpl();
 		List<Produto> produtos = dao.getLista();
 		
 		request.setAttribute("produtos", produtos);
