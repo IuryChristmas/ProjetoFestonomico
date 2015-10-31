@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Adição de Produto</title>
+<title>AdiÃ§Ã£o de Produto</title>
 </head>
 <body>
+<!-- teste de commit -->
 	<h1>Adiciona Produtos</h1>
 	<form action="adicionaProduto">
 		Nome: <input type="text" name="nome"/><br/>
