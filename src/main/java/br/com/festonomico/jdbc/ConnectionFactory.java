@@ -6,24 +6,17 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 	
-	private static final String DRIVER_NAME = "com.mysql.jdbc.Driver"; 
-	
-	private static final String URL = "jdbc:mysql://localhost/dsw";
-	
-	private static final String USER = "root";
-	
-	private static final String PASS = "123456";
-	
 	public Connection getConnection(){
 		Connection con = null;
 		try{			
-			Class.forName(DRIVER_NAME);
-			con = DriverManager.getConnection(URL,USER,PASS);
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/dsw";
+			con = DriverManager.getConnection(url,"root","123456");
 		}catch(SQLException ex){
 			System.out.println("Erro ao conectar o banco");
 			ex.getMessage();
 		}catch(ClassNotFoundException ex){
-			System.out.println("Driver de conexï¿½o nï¿½o encontrado");
+			System.out.println("Driver de conexão não encontrado");
 			ex.getMessage();
 		}		
 		return con;
