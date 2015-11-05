@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.festonomico.dao.UsuarioDao;
 import br.com.festonomico.jdbc.ConnectionFactory;
+import br.com.festonomico.modelo.Produto;
 import br.com.festonomico.modelo.Usuario;
 
 /**
@@ -32,81 +35,101 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 	
 	@Override
-	public Usuario obterUsuarPorId(int id) {
-		String sql = "select *from usuario where id=?";
+	public Usuario obterUsuarPorId(int id) throws SQLException {
+		String sql = "select *from usuario where cod_usuario=?";
 		Usuario usuario = new Usuario();
 		
-		try {
-			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()){
-				usuario.setCodUsuario(rs.getInt("id"));
-				usuario.setEmail(rs.getString("email"));
-				usuario.setNome(rs.getString("nome"));
-				usuario.setSenha(rs.getString("senha"));
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
+		PreparedStatement stmt = con.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()){
+			usuario.setCodUsuario(rs.getInt("cod_usuario"));
+			usuario.setEmail(rs.getString("email"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setSenha(rs.getString("senha"));
 		}
+		rs.close();
+		stmt.close();
+		
 		return usuario;
 	}
 
 	@Override
-	public void salvarUsuario(Usuario usuario) {
+	public void salvarUsuario(Usuario usuario) throws SQLException {
 		String sql = "insert into usuario"
-				+ " (id,email,nome,senha)"
-				+ " values (?,?,?,?)";
-		try{
-			PreparedStatement stmt = con.prepareStatement(sql);
-			
-			stmt.setInt(1, usuario.getCodUsuario());
-			stmt.setString(2, usuario.getEmail());
-			stmt.setString(3, usuario.getNome());
-			stmt.setString(4, usuario.getSenha());
-			
-			stmt.execute();
-			stmt.close();
-		}catch(SQLException e){
-			throw new RuntimeException(e);
-		}
-	}
+				+ " (email,nome,senha)"
+				+ " values (?,?,?)";
 
-	@Override
-	public void excluirUsuario(Usuario usuario) {
-		String sql = "delete from usuario where id=?";
+		PreparedStatement stmt = con.prepareStatement(sql);
 		
-		try{
-			PreparedStatement stmt = con.prepareStatement(sql);
-			
-			stmt.setInt(1, usuario.getCodUsuario());
-			
-			stmt.execute();
-			stmt.close();
-		}catch(SQLException ex){
-			throw new RuntimeException(ex);
-		}
+		stmt.setString(1, usuario.getEmail());
+		stmt.setString(2, usuario.getNome());
+		stmt.setString(3, usuario.getSenha());
+		
+		stmt.execute();
+		stmt.close();
 	}
 
 	@Override
-	public void editarUsuario(Usuario usuario) {
+	public void excluirUsuario(Usuario usuario) throws SQLException {
+		String sql = "delete from usuario where cod_usuario=?";
+		
+		PreparedStatement stmt = con.prepareStatement(sql);
+		
+		stmt.setInt(1, usuario.getCodUsuario());
+		
+		stmt.execute();
+		stmt.close();
+	}
+
+	@Override
+	public void editarUsuario(Usuario usuario) throws SQLException {
 		String sql = "update usuario set nome=?, email=?, senha=? "
-				+ "where id=?";
+				+ "where cod_usuario=?";
 		
-		try{
-			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, usuario.getCodUsuario());
-			stmt.setString(2, usuario.getNome());
-			stmt.setString(3, usuario.getEmail());
-			stmt.setString(4, usuario.getSenha());
-			
-			stmt.execute();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.setInt(1, usuario.getCodUsuario());
+		stmt.setString(2, usuario.getNome());
+		stmt.setString(3, usuario.getEmail());
+		stmt.setString(4, usuario.getSenha());
+		
+		stmt.execute();
 			stmt.close();
-		}catch(SQLException ex){
-			throw new RuntimeException(ex);
+	}
+
+	@Override
+	public int obterIdUsuarioPorEmailNome(String email, String nome) {
+		String sql = "select cod_usuario from usuario" 
+				+ "where email=? and nome=?";
+		
+		
+		return 0;
+	}
+
+	@Override
+	public List<Usuario> obterTodosUsuarios() throws SQLException {
+		List<Usuario> listaRetorno = new ArrayList<Usuario>();
+		String sql = "select * from usuario";
+		
+		PreparedStatement stmt = con.prepareStatement(sql);
+					
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()){
+			Usuario usuario = new Usuario();
+			
+			usuario.setCodUsuario(rs.getInt("cod_usuario"));
+			usuario.setEmail(rs.getString("emai"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setSenha(rs.getString("senha"));
+			
+			listaRetorno.add(usuario);
+		
 		}
+		rs.close();
+		stmt.close();
+	
+		
+		return null;
 	}
 
 }
