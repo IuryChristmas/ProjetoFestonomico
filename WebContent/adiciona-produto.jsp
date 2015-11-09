@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Adição de Produto</title>
+		<title>Adicionar Produto</title>
 		
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="./resources/bootstrap/css/bootstrap.min.css" />
@@ -27,13 +27,13 @@
 						<div class="col-md-12 col">
 							<header>
 								<h2><span class="glyphicon glyphicon-shopping-cart" ></span> Adicionar Produtos</h2>
-								<span>Nessa sessão, preencha seus dados pessoais.</span>
+								<span>Nessa sessÃ£o, preencha os dados do produto.</span>
 							</header>
 						</div>
 					</div>
 					
 					<div class="form-horizontal col-md-8 col">
-						<form action="adicionaProduto" >
+						<form  action="adicionaProduto" method="post">
 							<div class="form-group">
 								<label for="campoNome" class="control-label">Nome:</label> 
 								<input id="campoNome" class="form-control" type="text" name="nome"/><br/>
