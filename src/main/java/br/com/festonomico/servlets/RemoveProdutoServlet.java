@@ -13,7 +13,7 @@ import br.com.festonomico.dao.ProdutoDao;
 import br.com.festonomico.daoimpl.ProdutoDaoImpl;
 import br.com.festonomico.modelo.Produto;
 
-@WebServlet("removeProduto")
+@WebServlet("/removeProduto")
 public class RemoveProdutoServlet extends HttpServlet{
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

@@ -1,0 +1,30 @@
+<div id="sidebar-wrapper">
+     <ul class="nav nav-pills nav-stacked  navbar-inverse	">
+         <li role="presentation" class="active">
+             <a href="#">
+                 Simular festa
+             </a>
+         </li>
+         <li role="presentation">
+             <a href="#">Dashboard</a>
+         </li>
+         <li role="presentation">
+             <a href="#">Shortcuts</a>
+         </li>
+         <li role="presentation">
+             <a href="#">Overview</a>
+         </li>
+         <li role="presentation">
+             <a href="#">Events</a>
+         </li>
+         <li role="presentation">
+             <a href="#">About</a>
+         </li>
+         <li role="presentation">
+             <a href="#">Services</a>
+         </li>
+         <li role="presentation">
+             <a href="#">Contact</a>
+         </li>
+     </ul>
+ </div>
