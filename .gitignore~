@@ -1,0 +1,7 @@
+.gitignore
+.gitignore~
+.classpath
+.settings/*
+.project
+*.class
+

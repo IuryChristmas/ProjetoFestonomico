@@ -6,7 +6,7 @@
              </a>
          </li>
          <li role="presentation">
-             <a href="#">Dashboard</a>
+             <a href="#"><span class="glyphicon glyphicon-shopping-cart">test</span></a>
          </li>
          <li role="presentation">
              <a href="#">Shortcuts</a>

@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import br.com.festonomico.dao.UsuarioDao;
 import br.com.festonomico.jdbc.ConnectionFactory;
 import br.com.festonomico.modelo.Usuario;
+import br.com.festonomico.serviceImpl.UsuarioServiceImpl;
 
 /**
  * Classe responsável pelas implementações dos métodos de comunicao com a tabela Usuario
@@ -24,6 +27,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	 * Fecha conexão com o banco
 	 */
 	
+	Logger LOG = Logger.getLogger(UsuarioDaoImpl.class);
+	
 	Connection con = null;
 	
 	public UsuarioDaoImpl() {
@@ -36,8 +41,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		String sql = "select *from usuario where id=?";
 		Usuario usuario = new Usuario();
 		
+		PreparedStatement stmt;
 		try {
-			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()){
@@ -49,7 +55,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
 		return usuario;
 	}
@@ -57,46 +64,50 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public void salvarUsuario(Usuario usuario) {
 		String sql = "insert into usuario"
-				+ " (id,email,nome,senha)"
-				+ " values (?,?,?,?)";
-		try{
-			PreparedStatement stmt = con.prepareStatement(sql);
-			
-			stmt.setInt(1, usuario.getCodUsuario());
-			stmt.setString(2, usuario.getEmail());
-			stmt.setString(3, usuario.getNome());
-			stmt.setString(4, usuario.getSenha());
+				+ " (email,nome,senha)"
+				+ " values (?,?,?)";
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, usuario.getEmail());
+			stmt.setString(2, usuario.getNome());
+			stmt.setString(3, usuario.getSenha());
 			
 			stmt.execute();
 			stmt.close();
-		}catch(SQLException e){
-			throw new RuntimeException(e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
+		
 	}
 
 	@Override
 	public void excluirUsuario(Usuario usuario) {
 		String sql = "delete from usuario where id=?";
 		
-		try{
-			PreparedStatement stmt = con.prepareStatement(sql);
-			
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, usuario.getCodUsuario());
 			
 			stmt.execute();
 			stmt.close();
-		}catch(SQLException ex){
-			throw new RuntimeException(ex);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
+		
 	}
 
 	@Override
-	public void editarUsuario(Usuario usuario) {
+	public void editarUsuario(Usuario usuario)  {
 		String sql = "update usuario set nome=?, email=?, senha=? "
 				+ "where id=?";
 		
-		try{
-			PreparedStatement stmt = con.prepareStatement(sql);
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, usuario.getCodUsuario());
 			stmt.setString(2, usuario.getNome());
 			stmt.setString(3, usuario.getEmail());
@@ -104,8 +115,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			
 			stmt.execute();
 			stmt.close();
-		}catch(SQLException ex){
-			throw new RuntimeException(ex);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package br.com.festonomico.daoimpl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,12 +8,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import br.com.festonomico.dao.ProdutoDao;
 import br.com.festonomico.jdbc.ConnectionFactory;
 import br.com.festonomico.modelo.Produto;
 
+/**
+ * Classe responsável por prover a implementação dos métodos
+ * de comunicação com a tabela produto
+ * @author andersonmartins
+ *
+ */
 public class ProdutoDaoImpl implements ProdutoDao {
 
+	Logger LOG = Logger.getLogger(ProdutoDaoImpl.class);
+	
 	Connection con = null;
 	
 	public ProdutoDaoImpl(){
@@ -33,7 +44,8 @@ public class ProdutoDaoImpl implements ProdutoDao {
 			stmt.execute();
 			stmt.close();
 		}catch(SQLException e){
-			throw new RuntimeException(e);
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
 	}
 	//lista todos produtos do sistema
@@ -56,8 +68,9 @@ public class ProdutoDaoImpl implements ProdutoDao {
 			}
 			rs.close();
 			stmt.close();
-		}catch(SQLException ex){
-			throw new RuntimeException(ex);
+		}catch(SQLException e){
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
 		
 		return produtos;
@@ -66,7 +79,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	public List<Produto> getProduto(int id){
 		List<Produto> produtos = new ArrayList<Produto>();
 		try{
-			String sql = "select *from produtos where id=?";
+			String sql = "select * from produtos where id=?";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			
@@ -84,8 +97,9 @@ public class ProdutoDaoImpl implements ProdutoDao {
 			}
 			rs.close();
 			stmt.close();
-		}catch(SQLException ex){
-			System.out.println(ex.getMessage());
+		}catch(SQLException e){
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
 		return produtos;
 	}
@@ -103,8 +117,9 @@ public class ProdutoDaoImpl implements ProdutoDao {
 			
 			stmt.execute();
 			stmt.close();
-		}catch(SQLException ex){
-			throw new RuntimeException(ex);
+		}catch(SQLException e){
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
 	}
 	//remove produto
@@ -118,8 +133,27 @@ public class ProdutoDaoImpl implements ProdutoDao {
 			
 			stmt.execute();
 			stmt.close();
-		}catch(SQLException ex){
-			throw new RuntimeException(ex);
+		}catch(SQLException e){
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
 		}
 	}
+	
+	public void callProcedure(String id) {
+		//	CALL carregarBase('b2a1c3e5d5');
+		String sql = "CALL carregarBase(?)";
+		
+		try {
+			CallableStatement stmt = con.prepareCall(sql);
+			
+			stmt.setString(1, id);
+			
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
+		}
+	}
+	
 }
