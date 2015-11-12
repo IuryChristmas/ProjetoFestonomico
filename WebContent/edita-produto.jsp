@@ -10,12 +10,13 @@
 <body>
 	<h2>Edite os dados do Produto</h2>
 	<c:forEach var="produto" items="${produto }">
-	<form action="editaProduto">
+	<form action="festonomica" method="post">
 		<input type="hidden" name="id" value="${produto.id }"/>
 		Nome: <input type="text" name="nome" value="${produto.nome }"/>
 		Preço: <input type="text" name="valor" value="${produto.preco }"/>
 		Quantidade: <input type="number" name="quantidade" value="${produto.quantidade }"/>
 		
+		<input type="hidden" name="logica" value="EditaProdutoLogica"/>
 		<input type="submit" value="Salvar"/>
 	</form>
 	</c:forEach>

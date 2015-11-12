@@ -33,7 +33,7 @@
 					</div>
 					
 					<div class="form-horizontal col-md-8 col">
-						<form  action="adicionaProduto" method="post">
+						<form  action="festonomica" method="post">
 							<div class="form-group">
 								<label for="campoNome" class="control-label">Nome:</label> 
 								<input id="campoNome" class="form-control" type="text" name="nome"/><br/>
@@ -46,7 +46,7 @@
 								<label for="campoQtd" class="control-label">Quantidade:</label> 
 								<input id="campoQtd" class="form-control" type="number" name="quantidade"/><br/>
 							</div>
-							
+							<input type="hidden" name="logica" value="AdicionaProdutoLogica"/>
 							<button type="submit" class="btn btn-default">Adicionar Produto</button>
 						</form>
 					</div>

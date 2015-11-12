@@ -45,3 +45,4 @@ Temporary Items
 .settings/org.eclipse.wst.common.project.facet.core.xml
 .settings/org.eclipse.wst.common.project.facet.core.xml
 src/main/java/br/com/festonomico/servlets/RemoveProdutoServlet.java
+/build/
