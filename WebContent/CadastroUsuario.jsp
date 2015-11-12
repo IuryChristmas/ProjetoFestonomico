@@ -3,15 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Adicionar Produto</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Cadastrar Usuário</title>
 		
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="./resources/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="./resources/bootstrap/css/bootstrap-theme.min.css" />
-	</head>
-	<body>
-	<div class="container">
+    </head>
+    <body>
+        <div class="container">
 '		<jsp:include page="./template/barra_superior.jspf"></jsp:include>
 		
 		<div class="container col-md-3 col-sm-4 col-xs-4" style="padding-top:11%">
@@ -26,35 +26,42 @@
 					<div class="row">
 						<div class="col-md-12 col">
 							<header>
-								<h2><span class="glyphicon glyphicon-shopping-cart" ></span> Adicionar Produtos</h2>
-								<span>Nessa sessão, preencha os dados do produto.</span>
+								<h2>Cadastrar Usuário</h2>
+								<span>Nessa sessão, preencha seuss dados pessoais.</span>
 							</header>
 						</div>
-					</div>
-					
+					</div>	
 					<div class="form-horizontal col-md-8 col">
-						<form  action="adicionaProduto" method="post">
+						<form  action="#" method="post">
 							<div class="form-group">
 								<label for="campoNome" class="control-label">Nome:</label> 
-								<input id="campoNome" class="form-control" type="text" name="nome"/><br/>
+								<input id="campoNome" class="form-control" type="text" name="nome"/>
 							</div>
 							<div class="form-group">
-								<label for="campoValor" class="control-label">Valor do Produto:</label> 
-								<input id="campoValor" class="form-control" type="text" name="valor"/><br/>
+								<label for="campoEmail" class="control-label">Email:</label> 
+								<input id="campoEmail" class="form-control" type="email" name="email"/>
 							</div>
 							<div class="form-group">
-								<label for="campoQtd" class="control-label">Quantidade:</label> 
-								<input id="campoQtd" class="form-control" type="number" name="quantidade"/><br/>
+								<label for="campoSenha" class="control-label">Senha:</label> 
+								<input id="campoSenha" class="form-control" type="text" name="senha" maxlength="6"/>
 							</div>
-							<button type="submit" class="btn btn-default">Adicionar Produto</button>
+							<div class="form-group">
+								<label for="campoConfSenha" class="control-label">Confirmar Senha:</label> 
+								<input id="campoConfSenha" class="form-control" type="text"  name="confirmaSenha" maxlength="6"/>
+							</div>
+							
+							<div class="btn-group" role="group">
+								<button type="submit" class="btn btn-primary">Cadastrar</button>
+							</div>
 						</form>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</section>
-	</div>
-	<!-- JS & JQUERY -->
+		</div>
+    <!-- JS & JQUERY -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  	<script src="./resources/bootstrap/js/bootstrap.min.js"></script>
-	</body>
-</html>
+ 	</body>
+
+</HTML>

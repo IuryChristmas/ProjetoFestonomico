@@ -1,5 +1,7 @@
 package br.com.festonomico.dao;
 
+import java.sql.SQLException;
+
 import br.com.festonomico.modelo.Usuario;
 
 /**
