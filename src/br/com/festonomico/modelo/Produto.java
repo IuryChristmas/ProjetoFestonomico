@@ -11,6 +11,7 @@ public class Produto {
 	private String nome;
 	private int quantidade;
 	private double preco;
+	private TipoFesta tipoFesta;
 	
 	//getters e setters dos atributos
 	public int getId() {
@@ -36,6 +37,12 @@ public class Produto {
 	}
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+	public TipoFesta getTipoFesta() {
+		return tipoFesta;
+	}
+	public void setTipoFesta(TipoFesta tipoFesta) {
+		this.tipoFesta = tipoFesta;
 	}
 		
 }

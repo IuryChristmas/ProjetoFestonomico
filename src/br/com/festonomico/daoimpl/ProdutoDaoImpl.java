@@ -1,4 +1,4 @@
-package br.com.festonomico.daoimpl;
+﻿package br.com.festonomico.daoimpl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import br.com.festonomico.dao.ProdutoDao;
 import br.com.festonomico.jdbc.ConnectionFactory;
 import br.com.festonomico.modelo.Produto;
+import br.com.festonomico.modelo.TipoFesta;
 
 /**
  * Classe responsável por prover a implementação dos métodos
@@ -28,19 +29,31 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	
 	public ProdutoDaoImpl(){
 		con = new ConnectionFactory().getConnection();
-	}
-	
+	}	
 	@Override
 	public void insereProduto(Produto produto) {
 		String sql = "insert into produtos"
 				+ " (nome,quantidade,preco)"
 				+ " values (?,?,?)";
+
+	/**
+	 * Método de inserção de produto na tabela produto_exibir
+	 * 
+	 * @param produto
+	 * @exception SQLException
+	 */
+	public void insereProduto(Produto produto){
+		String sql = "insert into produto_exibir"
+				+ " (nome,quantidade_por_pessoa,preco_unitario,tipo_festa)"
+				+ " values (?,?,?,?)";
+
 		try{
 			PreparedStatement stmt = con.prepareStatement(sql);
 			
 			stmt.setString(1, produto.getNome());
 			stmt.setInt(2, produto.getQuantidade());
 			stmt.setDouble(3, produto.getPreco());
+			stmt.setString(4, produto.getTipoFesta().getDescricao());
 			
 			stmt.execute();
 			stmt.close();
@@ -52,7 +65,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	}
 	//lista todos produtos do sistema
 	public List<Produto> getLista(){
-		String sql = "select *from produtos";
+		String sql = "select * from produto";
 		List<Produto> produtos = new ArrayList<Produto>();
 		try{
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -60,10 +73,20 @@ public class ProdutoDaoImpl implements ProdutoDao {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
 				Produto produto = new Produto();
-				produto.setId(rs.getInt("id"));
+				produto.setId(rs.getInt("cod_produto"));
 				produto.setNome(rs.getString("nome"));
-				produto.setQuantidade(rs.getInt("quantidade"));
-				produto.setPreco(rs.getDouble("preco"));
+				produto.setQuantidade(rs.getInt("quantidade_por_pessoa"));
+				produto.setPreco(rs.getDouble("preco_unitario"));
+				String tipoFesta = rs.getString("tipo_festa");
+				
+				if (tipoFesta.equals(TipoFesta.CASAMENTO.getDescricao())) {
+					produto.setTipoFesta(TipoFesta.CASAMENTO);
+				}else if(tipoFesta.equals(TipoFesta.INFANTIL.getDescricao())) {
+					produto.setTipoFesta(TipoFesta.INFANTIL);
+				}else if(tipoFesta.equals(TipoFesta.QUINZE_ANOS.getDescricao())){
+					produto.setTipoFesta(TipoFesta.QUINZE_ANOS);
+				}
+				
 				
 				produtos.add(produto);
 			
@@ -81,7 +104,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	public List<Produto> getProduto(int id){
 		List<Produto> produtos = new ArrayList<Produto>();
 		try{
-			String sql = "select * from produtos where id=?";
+			String sql = "select * from produto where cod_produto=?";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			
@@ -90,10 +113,20 @@ public class ProdutoDaoImpl implements ProdutoDao {
 			
 			while(rs.next()){
 				Produto produto = new Produto();
-				produto.setId(rs.getInt("id"));
+				produto.setId(rs.getInt("cod_produto"));
 				produto.setNome(rs.getString("nome"));
-				produto.setPreco(rs.getDouble("preco"));
-				produto.setQuantidade(rs.getInt("quantidade"));
+				produto.setPreco(rs.getDouble("preco_unitario"));
+				produto.setQuantidade(rs.getInt("quantidade_por_pessoa"));
+				String tipoFesta = rs.getString("tipo_festa");
+				
+				if (tipoFesta.equals(TipoFesta.CASAMENTO.getDescricao())) {
+					produto.setTipoFesta(TipoFesta.CASAMENTO);
+				}else if(tipoFesta.equals(TipoFesta.INFANTIL.getDescricao())) {
+					produto.setTipoFesta(TipoFesta.INFANTIL);
+				}else if(tipoFesta.equals(TipoFesta.QUINZE_ANOS.getDescricao())){
+					produto.setTipoFesta(TipoFesta.QUINZE_ANOS);
+				}
+				
 				
 				produtos.add(produto);		
 			}
@@ -107,15 +140,16 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	}
 	//respons�vel pela edi��o
 	public void alteraProduto(Produto produto){
-		String sql = "update produtos set nome=?, quantidade=?, preco=? "
-				+ "where id=?";
+		String sql = "update produtos set nome=?, quantidade_por_pessoa=?, preco_unitario=?, tipo_festa=? "
+				+ "where cod_produto=?";
 		
 		try{
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, produto.getNome());
 			stmt.setInt(2, produto.getQuantidade());
 			stmt.setDouble(3, produto.getPreco());
-			stmt.setInt(4, produto.getId());
+			stmt.setString(4, produto.getTipoFesta().getDescricao());
+			stmt.setInt(5, produto.getId());
 			
 			stmt.execute();
 			stmt.close();
@@ -126,7 +160,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	}
 	//remove produto
 	public void removeProduto(Produto produto){
-		String sql = "delete from produtos where id=?";
+		String sql = "delete from produtos where cod_produto=?";
 		
 		try{
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -141,14 +175,20 @@ public class ProdutoDaoImpl implements ProdutoDao {
 		}
 	}
 	
-	public void callProcedure(String id) {
+	/**
+	 * Método que faz a chamada da procedure
+	 * 
+	 * @exception SQLException
+	 * @param idSessao 
+	 */
+	public void callProcedure(String idSessao) {
 		//	CALL carregarBase('b2a1c3e5d5');
 		String sql = "CALL carregarBase(?)";
 		
 		try {
 			CallableStatement stmt = con.prepareCall(sql);
 			
-			stmt.setString(1, id);
+			stmt.setString(1, idSessao);
 			
 			stmt.executeUpdate();
 			stmt.close();
