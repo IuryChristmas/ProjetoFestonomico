@@ -17,6 +17,12 @@ public class ConnectionFactory {
 	
 	private static final String PASS = "100anos";
 	
+	//programa é pra funcionar com o banco online, mesmo sem estar funcionando no computador
+	
+	/*private static final String URL = "jdbc:mysql://localhost/dsw";
+	private static final String USER = "root";
+	private static final String PASS = "123456";*/
+	
 	public Connection getConnection(){
 		Connection con = null;
 		try{			
@@ -26,7 +32,7 @@ public class ConnectionFactory {
 			System.out.println("Erro ao conectar o banco");
 			ex.getMessage();
 		}catch(ClassNotFoundException ex){
-			System.out.println("Driver de conexï¿½o nï¿½o encontrado");
+			System.out.println("Driver de conexao nao encontrado");
 			ex.getMessage();
 		}		
 		return con;
