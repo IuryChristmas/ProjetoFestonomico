@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import br.com.festonomico.dao.UsuarioDao;
 import br.com.festonomico.jdbc.ConnectionFactory;
 import br.com.festonomico.modelo.Usuario;
-import br.com.festonomico.serviceImpl.UsuarioServiceImpl;
 
 /**
  * Classe responsável pelas implementações dos métodos de comunicao com a tabela Usuario

@@ -3,9 +3,6 @@
  */
 package br.com.festonomico.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Produto {
 	private int id;
 	private String nome;

@@ -1,7 +1,5 @@
 package br.com.festonomico.serviceImpl;
 
-import java.sql.SQLException;
-
 import org.apache.log4j.Logger;
 
 import br.com.festonomico.dao.UsuarioDao;

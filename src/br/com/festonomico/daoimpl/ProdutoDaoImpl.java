@@ -30,12 +30,6 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	public ProdutoDaoImpl(){
 		con = new ConnectionFactory().getConnection();
 	}	
-	@Override
-	public void insereProduto(Produto produto) {
-		String sql = "insert into produtos"
-				+ " (nome,quantidade,preco)"
-				+ " values (?,?,?)";
-
 	/**
 	 * Método de inserção de produto na tabela produto_exibir
 	 * 
@@ -140,7 +134,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	}
 	//respons�vel pela edi��o
 	public void alteraProduto(Produto produto){
-		String sql = "update produtos set nome=?, quantidade_por_pessoa=?, preco_unitario=?, tipo_festa=? "
+		String sql = "update produto set nome=?, quantidade_por_pessoa=?, preco_unitario=?, tipo_festa=? "
 				+ "where cod_produto=?";
 		
 		try{
@@ -160,7 +154,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	}
 	//remove produto
 	public void removeProduto(Produto produto){
-		String sql = "delete from produtos where cod_produto=?";
+		String sql = "delete from produto where cod_produto=?";
 		
 		try{
 			PreparedStatement stmt = con.prepareStatement(sql);
