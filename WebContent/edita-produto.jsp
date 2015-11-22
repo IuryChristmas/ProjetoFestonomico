@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -14,49 +15,55 @@
 		<div class="container">
 '		<jsp:include page="./template/barra_superior.jspf"></jsp:include>
 		
-		<div class="container col-md-3 col-sm-4 col-xs-4" style="padding-top:11%">
-			<div class= "row">
-				<jsp:include page="./template/side_bar.jspf"></jsp:include>
-			</div>
-		</div>
 		<section class="container col-md-9 col col-sm-8 col-xs-8">
 			<div class= "row" style="padding-top: 10%">
 				<div class="col-md-12 col">
 					
-					<div class="row">
-						<div class="col-md-12 col">
-							<header>
-								<h2>Edite os dados do Produto</h2>
-								<span>Nessa sessão, preencha os dados do produto a serem alterados.</span>
-							</header>
-						</div>
-					</div>
-					
 					<div class="form-horizontal col-md-8 col">
-						<c:forEach var="produto" items="${produto }">
-							<form action="editaProduto">
-								<input type="hidden" name="id" value="${produto.id }"/>
-								<div class="form-group">
-									<label for="campoNome" class="control-label">Nome:</label> 
-									<input id="campoNome" class="form-control" type="text" name="nome" value="${produto.nome }"/>
-								</div>
-								
-								<div class="form-group">
-									<label for="campoPreco" class="control-label">Preço:</label> 
-									<input id="campoPreco" class="form-control" type="text" name="valor" value="${produto.preco }"/>
-								</div>
-								
-								<div class="form-group">
-									<label for="campoQtd" class="control-label">Nome:</label> 
-									<input id="campoQtd" class="form-control" type="number" name="quantidade" value="${produto.quantidade }"/>
-								</div>
-								
-								<div class="btn-group-justified" role="group">
-									<button type="submit" class="btn btn-primary">Salvar</button>
-								</div>
-								
-							</form>
-						</c:forEach>
+						<form id="formAdicionaProduto" action="adicionaProduto" method="post">
+							
+							<div id="cabecalhoForm" class="form-group">
+								<div class="page-header">
+									<h3><span class="label label-default">Edite os dados do Produto</span></h3>
+								</div>	
+							</div>
+							
+							<c:forEach var="produto" items="${produto }">
+									<input type="hidden" name="id" value="${produto.id }"/>
+									<div class="form-group">
+										<label for="campoNome" class="col-sm-2 control-label">Nome</label>
+										<div class="col-sm-10">
+											<input id="campoNome" placeholder="Nome" value="${produto.nome}" class="form-control" type="text" name="nome"/>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="campoPreco" class="col-sm-2 control-label">PreÃ§o</label>
+										<div class="col-sm-10">
+											<input id="campoPreco" placeholder="PreÃ§o" value="${produto.preco}" class="form-control" type="text" name="preco"/>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="campoQtd" class="col-sm-2 control-label">Quantidade</label>
+										<div class="col-sm-10">
+											<input id="campoQtd" placeholder="Quantidade de produtos" value="${produto.quantidade}" class="form-control" type="text" name="quantidade"/>
+										</div>
+									</div>
+									
+									<div id="divButton" class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<button type="submit" class="btn btn-primary">Salvar</button>
+										</div>
+									</div>
+									
+									<div class="btn-group-justified" role="group">
+										
+									</div>
+									
+								</form>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     
@@ -8,73 +10,55 @@
 		<title>Projeto Festonômico</title>
 		
 		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="../../resources/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="../../resources/bootstrap/css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="./resources/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./resources/bootstrap/css/bootstrap-theme.min.css" />
     </head>
     
     <body>
-        <form action="index.html" method="post">
-            <fieldset>
-                <p align=CENTER>
-                    <tr>
-                        <td>
-                            TIPO DE FESTA
-                        </td>
-                        <select name=mytextarea>
-                            <option name=um value=one>
-                                TIPO DE FESTA 1
-                            </option>
-                            <option name=dois value=two>
-                                TIPO DE FESTA 2
-                            </option>
-                            <option name=tres value=three>
-                                TIPO DE FESTA 3
-                            </option>
-                        </select>
-                        <td>
-                            TOTAL PESSOAS
-                            <input type="number" name="total" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p align=CENTER>
-                                Cadastre-se e tenha dicas para ir bem na sua festa!!!!
-                        </td>
-                        <tr/>
-                        <p align=CENTER>
-                            LOGIN:
-                            <input type="email" name="id" />
-                            </td>
-                    </tr>
-                    <tr>
-                        <table>
-                            <p align=CENTER>
-                                SENHA:
-                                <input type="password" name="senha_do_usuario" />
-                                </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <td align="left">
-                                <button type="button">
-                                    LOGIN
-                                </button>
-                            </td>
-                            <td align="left">
-                                <button type="button">
-                                    ESQUECI A SENHA
-                                </button>
-                            </td>
-                            <td align="left">
-                                <button type="button">
-                                    CADASTRAR
-                                </button>
-                            </td>
-                    </tr>
-                    </table>
-            </fieldset>
-        </form>
+    	<div class="container">
+			<jsp:include page="./template/barra_superior.jspf"></jsp:include>
+			
+			<div class="container col-md-12 col col-sm-12 col-xs-12">
+				<div class= "row" style="padding-top: 10%">
+					<div class="col-md-12 col">
+						<div class="form-horizontal col-md-8 col">
+					    	<form action="#" method="post" >
+					    	
+					    		<div id="cabecalhoForm" class="form-group">
+									<div class="page-header">
+										<h3><span class="label label-default">Cadastre-se e tenha dicas para ir bem na sua festa!</span></h3>
+									</div>	
+								</div>
+					    	
+					    		<div class="form-group">
+								<label for="campoLogin" class="col-sm-2 control-label">Usuário</label>
+									<div class="col-sm-10">
+										<input id="campoLogin" placeholder="Usuario" class="form-control" type="text" name=usuario/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+								<label for="campoSenha" class="col-sm-2 control-label">Senha</label>
+									<div class="col-sm-10">
+										<input id="campoSenha" placeholder="Senha" class="form-control" type="text" name=senha/>
+									</div>
+								</div>
+					    		
+					    		<div id="divButton" class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button class="btn-danger active" type="submit" >Login</button>
+										<button class="btn-default" type="submit" >Cadastrar</button>
+										<button class="btn-default" type="submit" >Esqueceu a senha?</button>
+									</div>
+								</div>
+								
+					    		
+					    	</form>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
         <!-- JS & JQUERY -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
  	<script src="./resources/bootstrap/js/bootstrap.min.js"></script>

@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -14,42 +16,39 @@
 	<div class="container">
 '		<jsp:include page="./template/barra_superior.jspf"></jsp:include>
 		
-		<div class="container col-md-3 col-sm-4 col-xs-4" style="padding-top:11%">
-			<div class= "row">
-				<jsp:include page="./template/side_bar.jspf"></jsp:include>
-			</div>
-		</div>
 		<section class="container col-md-9 col col-sm-8 col-xs-8">
 			<div class= "row" style="padding-top: 10%">
 				<div class="col-md-12 col">
 					
-					<div class="row">
-						<div class="col-md-12 col">
-							<header>
-								<h2>Adicionar Produtos</h2>
-								<span>Nessa sessão, preencha os dados do produto.</span>
-							</header>
-						</div>
-					</div>
-					
 					<div class="form-horizontal col-md-8 col">
-						<form  action="adicionaProduto" method="post">
-							<div class="form-group">
-								<label for="campoNome" class="control-label">Nome:</label> 
-								<input id="campoNome" class="form-control" type="text" name="nome"/>
-							</div>
-							<div class="form-group">
-								<label for="campoValor" class="control-label">Valor do Produto:</label> 
-								<input id="campoValor" class="form-control" type="text" name="valor"/>
-							</div>
-							<div class="form-group">
-								<label for="campoQtd" class="control-label">Quantidade:</label> 
-								<input id="campoQtd" class="form-control" type="number"  name="quantidade"/>
+						<form id="formAdicionaProduto" action="adicionaProduto" method="post">
+							
+							<div id="cabecalhoForm" class="form-group">
+								<div class="page-header">
+									<h3><span class="label label-default">Adicionar Produtos</span></h3>
+								</div>	
 							</div>
 							
-							<div class="btn-group-justified" role="group">
-								<button type="submit" class="btn btn-primary">Adicionar Produto</button>
+							<div class="form-group">
+								<label for="campoNome" class="col-sm-2 control-label">Nome</label>
+								<div class="col-sm-10">
+									<input id="campoNome" placeholder="Nome" class="form-control" type="text" name="nome"/>
+								</div>
 							</div>
+							
+							<div class="form-group">
+								<label for="campoValor" class="col-sm-2 control-label">Valor</label>
+								<div class="col-sm-10">
+									<input id="campoValor" placeholder="Valor do Produto" class="form-control" type="text" name="valor"/>
+								</div>
+							</div>
+							
+							<div id="divButton" class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-primary">Adicionar Produto</button>
+								</div>
+							</div>
+							
 						</form>
 					</div>
 				</div>

@@ -1,17 +1,36 @@
 package br.com.festonomico.logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.festonomico.dao.ProdutoDao;
 import br.com.festonomico.daoimpl.ProdutoDaoImpl;
 import br.com.festonomico.modelo.Produto;
+import br.com.festonomico.modelo.TipoFesta;
 
 public class AdicionaProdutoLogica implements Logica{
 
+	TipoFesta[] tipoFestaArray = TipoFesta.values();
+	List<String> listaTipoFesta = new ArrayList<String>();
+	
+	private void init() {
+//		lançar a lista para a view
+		tipoFestaArray = TipoFesta.values();
+		listaTipoFesta = new ArrayList<String>();
+		for (TipoFesta tipoFesta : tipoFestaArray) {
+			listaTipoFesta.add(tipoFesta.getDescricao());
+		}
+	}
+	
 	@Override
 	public String executa(HttpServletRequest request,
 			HttpServletResponse response) {
+		
+		request.setAttribute("tipoFesta", listaTipoFesta);
+		
 		//recebe os parametros da pagina jsp
 		String nome = request.getParameter("nome");
 		String quantidade = request.getParameter("quantidade");

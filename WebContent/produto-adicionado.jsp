@@ -14,11 +14,6 @@
 	<div class="container">
 '		<jsp:include page="./template/barra_superior.jspf"></jsp:include>
 		
-		<div class="container col-md-3 col-sm-4 col-xs-4" style="padding-top:11%">
-			<div class= "row">
-				<jsp:include page="./template/side_bar.jspf"></jsp:include>
-			</div>
-		</div>
 		<section class="container col-md-9 col col-sm-8 col-xs-8">
 			<div class= "row" style="padding-top: 10%">
 				<div class="col-md-12 col">
