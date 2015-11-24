@@ -20,11 +20,6 @@
 		</tr>
 		<c:forEach var="produtos" items="${produtos}">
 		<tr>
-			<td>${produto.nome}</td>
-			<td>${produto.preco}</td>
-			<td>${produto.quantidade}</td>
-			<td><a href="selecionaProduto?id=${produto.id}">Alterar</a></td>
-			<td><a href="removeProduto?id=${produto.id}">Remover</a></td>
 			<td>${produtos.nome}</td>
 			<td>${produtos.preco}</td>
 			<td>${produtos.quantidade}</td>
@@ -32,6 +27,11 @@
 			<td><a href="festonomica?logica=RemoveProdutoLogica&id=${produtos.id }">Remover</a></td>
 		</tr>
 		</c:forEach>
+		<tr>
+			<th>Total</th>
+			<th>0.00</th>
+		</tr>
 	</table>
+	<a href="adiciona-produto.jsp"><button>Adicionar Novo Produto</button></a>
 </body>
 </html>

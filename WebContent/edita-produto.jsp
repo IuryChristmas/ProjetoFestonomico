@@ -20,7 +20,7 @@
 				<div class="col-md-12 col">
 					
 					<div class="form-horizontal col-md-8 col">
-						<form id="formAdicionaProduto" action="adicionaProduto" method="post">
+						<form id="formAdicionaProduto" action="festonomica" method="post">
 							
 							<div id="cabecalhoForm" class="form-group">
 								<div class="page-header">
@@ -50,7 +50,7 @@
 											<input id="campoQtd" placeholder="Quantidade de produtos" value="${produto.quantidade}" class="form-control" type="text" name="quantidade"/>
 										</div>
 									</div>
-									
+									<input type="hidden" name = "logica" value="EditaProdutoLogica"/>
 									<div id="divButton" class="form-group">
 										<div class="col-sm-offset-2 col-sm-10">
 											<button type="submit" class="btn btn-primary">Salvar</button>

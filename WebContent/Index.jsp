@@ -31,24 +31,27 @@
 								</div>
 					    	
 					    		<div class="form-group">
-								<label for="campoLogin" class="col-sm-2 control-label">Usuário</label>
+								<label for="campoFesta" class="col-sm-2 control-label">Tipo de Festa</label>
 									<div class="col-sm-10">
+										<select id="campoFesta">
+										<c:forEach items="" var="" >
+											<option value="" ></option>					
+										</c:forEach>
+										</select>
 										<input id="campoLogin" placeholder="Usuario" class="form-control" type="text" name=usuario/>
 									</div>
 								</div>
 								
 								<div class="form-group">
-								<label for="campoSenha" class="col-sm-2 control-label">Senha</label>
+								<label for="campoQtd" class="col-sm-2 control-label">Quantidade</label>
 									<div class="col-sm-10">
-										<input id="campoSenha" placeholder="Senha" class="form-control" type="text" name=senha/>
+										<input id="campoQtd" placeholder="Senha" class="form-control" type="number" name=quanidade/>
 									</div>
 								</div>
 					    		
 					    		<div id="divButton" class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button class="btn-danger active" type="submit" >Login</button>
-										<button class="btn-default" type="submit" >Cadastrar</button>
-										<button class="btn-default" type="submit" >Esqueceu a senha?</button>
+										<a href="festonomica?logica=ListaProdutoLogica"><button class="btn-default" type="button">Simular Festa</button></a>
 									</div>
 								</div>
 								

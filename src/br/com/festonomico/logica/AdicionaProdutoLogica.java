@@ -16,20 +16,20 @@ public class AdicionaProdutoLogica implements Logica{
 	TipoFesta[] tipoFestaArray = TipoFesta.values();
 	List<String> listaTipoFesta = new ArrayList<String>();
 	
-	private void init() {
+	/*private void init() {
 //		lançar a lista para a view
 		tipoFestaArray = TipoFesta.values();
 		listaTipoFesta = new ArrayList<String>();
 		for (TipoFesta tipoFesta : tipoFestaArray) {
 			listaTipoFesta.add(tipoFesta.getDescricao());
 		}
-	}
+	}*/
 	
 	@Override
 	public String executa(HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		request.setAttribute("tipoFesta", listaTipoFesta);
+		//request.setAttribute("tipoFesta", listaTipoFesta);
 		
 		//recebe os parametros da pagina jsp
 		String nome = request.getParameter("nome");

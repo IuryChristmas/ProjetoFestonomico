@@ -46,7 +46,7 @@
 									<input id="campoValor" placeholder="Valor do Produto" class="form-control" type="text" name="valor"/>
 								</div>
 							</div>
-							
+							<input type="hidden" name = "logica" value="AdicionaProdutoLogica"/>
 							<div id="divButton" class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<button type="submit" class="btn btn-primary">Adicionar Produto</button>

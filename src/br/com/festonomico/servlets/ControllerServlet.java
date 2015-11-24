@@ -30,8 +30,7 @@ public class ControllerServlet extends HttpServlet {
 		String nomeDaClasse = "br.com.festonomico.logica." + parametro;
 		
 		try{
-			//eu esqueci o que o Class.forName faz, mas ele vai receber o noem da classe
-			//justamente pra poder buscar a classe correta.
+			//o class.forName vai carregar a classe desejada
 			Class classe = Class.forName(nomeDaClasse);
 			/*
 			 * aqui nós estamos instanciando a Logica
