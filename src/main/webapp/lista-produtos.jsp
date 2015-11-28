@@ -29,7 +29,7 @@
 		</c:forEach>
 		<tr>
 			<th>Total</th>
-			<th>0.00</th>
+			<th>${total }</th>
 		</tr>
 	</table>
 	<a href="adiciona-produto.jsp"><button>Adicionar Novo Produto</button></a>

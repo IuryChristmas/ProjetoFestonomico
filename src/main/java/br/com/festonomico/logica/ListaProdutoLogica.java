@@ -12,13 +12,15 @@ import br.com.festonomico.dao.ProdutoDao;
 import br.com.festonomico.daoimpl.ProdutoDaoImpl;
 import br.com.festonomico.modelo.Produto;
 import br.com.festonomico.modelo.TipoFesta;
+import br.com.festonomico.modeloTO.ProdutoTO;
+import br.com.festonomico.util.ProdutoUtil;
 
 public class ListaProdutoLogica implements Logica{
 
 	String idSessao = null;
 	
 	ProdutoDao dao;
-	
+	@Override
 	public String executa(HttpServletRequest request,
 			HttpServletResponse response) {
 		HttpSession s =  request.getSession();
@@ -36,8 +38,10 @@ public class ListaProdutoLogica implements Logica{
 		}
 		
 		List<Produto> produtos = calculoFesta(tipoFesta, quantidadePessoas);
-		
-		request.setAttribute("produtos", produtos);
+		String total = total(produtos);
+		List<ProdutoTO> listaExibir = ProdutoUtil.toProduto(produtos);
+		request.setAttribute("produtos", listaExibir);
+		request.setAttribute("total", total);
 		return "lista-produtos.jsp";
 	}
 	
@@ -64,7 +68,8 @@ public class ListaProdutoLogica implements Logica{
 		List<Produto> produtosFiltrados = new ArrayList<Produto>();
 		for (Produto produto : produtosPadrao) {
 			if(produto.getTipoFesta().equals(TipoFesta.ADULTA)
-					&& produto.getTipoFesta().equals(TipoFesta.TODOS)) {
+					|| produto.getTipoFesta().equals(TipoFesta.TODOS)) {
+				
 				produtosFiltrados.add(produto);
 			}
 		}
@@ -98,21 +103,22 @@ public class ListaProdutoLogica implements Logica{
 		for (Produto produto : produtosFiltrados) {
 			//	calcular qtd de produtos por pessoa
 			
-			DecimalFormat df = new DecimalFormat("0.##");
-			
-			//Double.valueOf(String.format(Locale.US, "%.2f", valor)); 
-			
 			double produtosPorPessoas = produto.getQuantidade()*quantidadePessoas;
-			//produtosPorPessoas = Double.valueOf(df.format(produtosPorPessoas));
 			produto.setQuantidade(produtosPorPessoas);
-			
 			double precoPorQtd = produto.getPreco()*produto.getQuantidade();
-			//precoPorQtd = Double.valueOf(df.format(precoPorQtd));
 			produto.setPreco(precoPorQtd);
 			
 			retorno.add(produto);
 		}
 		
 		return retorno;
+	}
+	
+	public String total(List<Produto> produtos) {
+		double total = 0;
+		for (Produto produto : produtos) {
+			total = total + produto.getPreco();
+		}
+		return ProdutoUtil.restringirCasaDecimal(total);
 	}
 }

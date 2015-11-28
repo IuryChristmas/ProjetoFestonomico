@@ -9,6 +9,7 @@ import br.com.festonomico.modelo.Produto;
 
 public class EditaProdutoLogica implements Logica{
 
+	@Override
 	public String executa(HttpServletRequest request,
 			HttpServletResponse response) {
 		Produto produto = new Produto();

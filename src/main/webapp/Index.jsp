@@ -22,7 +22,7 @@
 				<div class= "row" style="padding-top: 10%">
 					<div class="col-md-12 col">
 						<div class="form-horizontal col-md-8 col">
-					    	<form action="festonomica" method="post" >
+					    	<form action="festonomica">
 					    	
 					    		<div id="cabecalhoForm" class="form-group">
 									<div class="page-header">
@@ -36,7 +36,7 @@
 										<select id="campoFesta" name="campoFesta" >
 											<option value="Selecione" selected="selected" disabled="disabled" >Selecione</option>
 											<option value="INFANTIL">Infantil</option>
-											<option value="ADULTO">Adulta</option>
+											<option value="ADULTA">Adulta</option>
 										</select>
 									</div>
 								</div>
