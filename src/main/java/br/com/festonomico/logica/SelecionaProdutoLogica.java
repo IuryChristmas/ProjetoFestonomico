@@ -11,6 +11,7 @@ import br.com.festonomico.modelo.Produto;
 
 public class SelecionaProdutoLogica implements Logica{
 
+	@Override
 	public String executa(HttpServletRequest request,
 			HttpServletResponse response) {
 		
