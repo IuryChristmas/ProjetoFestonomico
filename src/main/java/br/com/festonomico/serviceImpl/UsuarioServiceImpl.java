@@ -19,7 +19,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 	
 	private	UsuarioDao dao = new UsuarioDaoImpl();
 
-	@Override
 	public int obterIdUsuarioPorEmailNome(String email, String nome) {
 		int retorno = 0;
 		return retorno;

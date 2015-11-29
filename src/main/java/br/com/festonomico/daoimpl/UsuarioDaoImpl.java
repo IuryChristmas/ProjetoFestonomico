@@ -36,7 +36,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		con = ConnectionJNDI.getConnection();
 	}
 
-	@Override
 	public Usuario obterUsuarPorId(int id) {
 		String sql = "select *from usuario where id=?";
 		Usuario usuario = new Usuario();
@@ -61,7 +60,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		return usuario;
 	}
 
-	@Override
 	public void editarUsuario(Usuario usuario) {
 		String sql = "update usuario set nome=?, email=?, senha=? "
 				+ "where id=?";
@@ -82,7 +80,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 	}
 
-	@Override
 	public void excluirUsuario(Usuario usuario) {
 		String sql = "delete from usuario where id=?";
 		
@@ -100,7 +97,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		
 	}
 
-	@Override
 	public void salvarUsuario(Usuario usuario) {
 		String sql = "insert into usuario"
 				+ " (email,nome,senha)"

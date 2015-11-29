@@ -36,7 +36,6 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	 * @param produto
 	 * @exception SQLException
 	 */
-	@Override
 	public void insereProduto(Produto produto){
 		String sql = "insert into produto_exibir"
 				+ " (nome,quantidade_por_pessoa,preco_unitario,tipo_festa)"
@@ -59,7 +58,6 @@ public class ProdutoDaoImpl implements ProdutoDao {
 		
 	}
 	//lista todos produtos do sistema
-	@Override
 	public List<Produto> getLista(String IdSessao){
 		String sql = "select * from produto_exibir where id_sessao =?";
 		List<Produto> produtos = new ArrayList<Produto>();
@@ -97,7 +95,6 @@ public class ProdutoDaoImpl implements ProdutoDao {
 		return produtos;
 	}
 	//seleciona produto especifico para edi��o
-	@Override
 	public List<Produto> getProduto(int id){
 		List<Produto> produtos = new ArrayList<Produto>();
 		try{
@@ -133,7 +130,6 @@ public class ProdutoDaoImpl implements ProdutoDao {
 		return produtos;
 	}
 	//respons�vel pela edi��o
-	@Override
 	public void alteraProduto(Produto produto){
 		String sql = "update produto_exibir set nome=?, quantidade_por_pessoa=?, preco_unitario=?, tipo_festa=? "
 				+ "where id_produto=?";
@@ -154,7 +150,6 @@ public class ProdutoDaoImpl implements ProdutoDao {
 		}
 	}
 	//remove produto
-	@Override
 	public void removeProduto(Produto produto){
 		String sql = "delete from produto where cod_produto=?";
 		
@@ -177,7 +172,6 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	 * @exception SQLException
 	 * @param idSessao 
 	 */
-	@Override
 	public void callProcedure(String idSessao) {
 		//	CALL carregarBase('b2a1c3e5d5');
 		String sql = "CALL carregarBase(?)";
